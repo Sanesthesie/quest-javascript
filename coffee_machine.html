@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Machine</title>
+</head>
+    <body>
+        <script>
+
+// Plusieurs problèmes à résoudre : retirer la sensibilité à la casse + mieux définir les réponses demandées + quelques bugs non résolus lors des périodes de test.
+// Trouver quelque chose de plus sympa qu'un panneau d'alerte à la fin et la possibilité de repasser une commande ?
+          
+let beverageOption = undefined
+let sugarOption = undefined
+let milkOption = undefined
+
+coffeeMachineOrdering();
+
+function coffeeMachineOrdering() {
+
+        const firstChoice = prompt("Choisissez votre boisson : Thé ou café ?");
+
+            if (firstChoice === "thé" || firstChoice === "café") {
+                beverageOption = firstChoice
+            } else {coffeeMachineOrdering()}
+
+        const secondChoice = prompt("Avec du sucre ?");
+
+            if (secondChoice === "oui") {
+                sugarOption = "avec sucre"
+            } else if (secondChoice === "non") {
+                sugarOption = "sans sucre"
+            } else {;
+                coffeeMachineOrdering();
+            };
+
+        let thirdChoice = prompt("Avec du lait ?");
+
+            if (thirdChoice === "oui") {
+                thirdChoice = prompt("Option végétale ?");
+                    if (thirdChoice === "oui") {
+                        milkOption = "avec du lait végétal"
+                    } else {milkOption = "avec du lait de vache"}
+                    } else { milkOption = "sans lait"}
+
+        let printOrder = prompt (`Vous avez choisi du ${beverageOption}, ${sugarOption} et ${milkOption}. Confirmez-vous votre choix ?`)
+
+            if (printOrder !== "oui") {
+                coffeeMachineOrdering()
+            }
+
+            alert("Votre boisson est prête.")
+    }
+
+        </script>
+    </body>
+</html>
