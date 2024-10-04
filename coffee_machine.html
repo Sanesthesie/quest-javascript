@@ -3,55 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee Machine</title>
+    <title>Coffee Machine v2</title>
 </head>
     <body>
         <script>
 
-// Plusieurs problèmes à résoudre : retirer la sensibilité à la casse + mieux définir les réponses demandées + quelques bugs non résolus lors des périodes de test.
-// Trouver quelque chose de plus sympa qu'un panneau d'alerte à la fin et la possibilité de repasser une commande ?
-          
 let beverageOption = undefined
 let sugarOption = undefined
 let milkOption = undefined
 
-coffeeMachineOrdering();
+function beverageOrder() {
 
-function coffeeMachineOrdering() {
+    const firstChoice = prompt("Choisissez votre boisson : Thé ou café ?");
 
-        const firstChoice = prompt("Choisissez votre boisson : Thé ou café ?");
+        if (firstChoice.toLowerCase() === "thé" || firstChoice.toLowerCase() === "café") {
+        beverageOption = firstChoice;
+        sugarOrder();
+        }
 
-            if (firstChoice === "thé" || firstChoice === "café") {
-                beverageOption = firstChoice
-            } else {coffeeMachineOrdering()}
+        beverageOrder();
 
-        const secondChoice = prompt("Avec du sucre ?");
+    }
 
-            if (secondChoice === "oui") {
-                sugarOption = "avec sucre"
-            } else if (secondChoice === "non") {
-                sugarOption = "sans sucre"
-            } else {;
-                coffeeMachineOrdering();
-            };
+function sugarOrder() {
 
-        let thirdChoice = prompt("Avec du lait ?");
+    const secondChoice = prompt("Vous prenez du sucre ?");
 
-            if (thirdChoice === "oui") {
-                thirdChoice = prompt("Option végétale ?");
-                    if (thirdChoice === "oui") {
-                        milkOption = "avec du lait végétal"
-                    } else {milkOption = "avec du lait de vache"}
-                    } else { milkOption = "sans lait"}
-
-        let printOrder = prompt (`Vous avez choisi du ${beverageOption}, ${sugarOption} et ${milkOption}. Confirmez-vous votre choix ?`)
-
-            if (printOrder !== "oui") {
-                coffeeMachineOrdering()
+            if (secondChoice.toLowerCase() === "oui" || secondChoice.toLowerCase() === "sucre" ) {
+                sugarOption = "avec sucre";
+                milkOrder();
             }
 
-            alert("Votre boisson est prête.")
+            if (secondChoice.toLowerCase() === "non" || secondChoice.toLowerCase() === "sans sucre") {
+                sugarOption = "sans sucre";
+                milkOrder();
+            }
+
+            sugarOrder();
+
     }
+
+function milkOrder() {
+
+    const thirdChoice = prompt("Vous prenez du lait ?");
+
+        if (thirdChoice.toLowerCase() === "oui" || thirdChoice.toLowerCase() === "lait") {
+
+            const fourthChoice = prompt("Option végétale ?");
+
+                if (fourthChoice.toLowerCase() === "oui") {
+                    milkOption = "avec du lait végétal";
+                    confirmOrder();
+                }
+                milkOption = "avec du lait de vache";
+                confirmOrder();
+                }
+
+        if (thirdChoice.toLowerCase() === "non") {
+            milkOption = "sans lait";
+            confirmOrder();
+        }
+    
+    milkOrder()
+
+        }
+
+function confirmOrder() {
+
+    const printOrder = prompt (`Vous avez choisi du ${beverageOption.toLowerCase()}, ${sugarOption} et ${milkOption}. Confirmez-vous votre choix ?`)
+
+    if (printOrder.toLowerCase() === "oui") {
+        alert(`Voici votre ${beverageOption.toLowerCase()} ! Merci d'avoir passé commande.`);
+
+        end()
+
+    }
+    if (printOrder.toLowerCase() === "non") {
+        beverageOrder();
+    }
+    confirmOrder();
+}
+
+beverageOrder();
 
         </script>
     </body>
