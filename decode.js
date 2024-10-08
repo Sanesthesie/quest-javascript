@@ -5,13 +5,15 @@ const hiddenMessage = ["X", "X", "X", "X", "W", "X", "E",  "X", "X", "X", "X", "
 
 // Your code goes here
 
-for (let i = 0; i <= hiddenMessage.length; i++) {
-	if (hiddenMessage[i] !== "X") {
+const decodedMessage =[];
 
-		console.log(hiddenMessage[i])
-
+for (let i=0; i<hiddenMessage.length; i++){
+	if (hiddenMessage[i] !== "X"){
+		decodedMessage.push(hiddenMessage[i]);
         }
-    }
+}
+
+console.log(decodedMessage.join(""));
 
 // EX 02 - Remove the 'X' and the even numbers
 // Hint: As this is a string you should find a way to convert into an array.
@@ -20,12 +22,12 @@ const hiddenCode = "XXXXXXXXXXXXXXXXXXXXXXXXXXXCXXXXXXXOXXXXXDXXXXXXXXXXXXXXXEXX
 
 // Your code goes here
 
-const betterHiddenCode = hiddenCode.split("");
+const decodedCode =[];
 
-for (let i = 0; i <= betterHiddenCode.length; i++) {
-
-	if (betterHiddenCode[i] !== "X" && betterHiddenCode[i]%2 !== 0) {
-        
-		console.log(betterHiddenCode[i])
-    	}
+for (let i=0; i<hiddenCode.split([]).length; i++){
+	if (hiddenCode[i] !== "X" && hiddenCode[i]%2 !== 0){
+		decodedCode.push(hiddenCode.split([])[i]);
     }
+}
+
+console.log(decodedCode.join(""));
